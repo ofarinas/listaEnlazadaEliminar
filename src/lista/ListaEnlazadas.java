@@ -49,6 +49,24 @@ public class ListaEnlazadas {
         }
 
     }
+// invierte los valores deuna lista 
+    public ListaEnlazadas invertir() {
+        ListaEnlazadas enlazadas = new ListaEnlazadas();
+        Node aux = root;
+        while (aux != null) {
+            insertarSimple(aux.dato,enlazadas);
+            aux = aux.next;
+        }
+        return enlazadas;
+    }
+//método que inserta por la cabecera 
+
+    public void insertarSimple(int e,ListaEnlazadas enlazadas) {
+        Node aux = new Node();
+        aux.dato = e;
+        aux.next = enlazadas.root;
+       enlazadas.root = aux;
+    }
 
     public int eliminar(int elemento) {
         Node aux = root;
@@ -59,8 +77,9 @@ public class ListaEnlazadas {
                     root = root.next;
                 } else {
                     aux.prev.next = aux.next;
-                    if(aux.next!=null)
-                    aux.next.prev = aux;
+                    if (aux.next != null) {
+                        aux.next.prev = aux;
+                    }
                 }
                 count++;
             }
@@ -68,6 +87,4 @@ public class ListaEnlazadas {
         }
         return count;
     }
-
-   
 }

@@ -17,16 +17,21 @@ public class Lista {
      */
     public static void main(String[] args) {
         ListaEnlazadas lista = new ListaEnlazadas();
-   lista.insertar(4);
-   
-        
-        System.out.println(lista.eliminar(4));
-    // lista.rellenar();
-     Node nodeAux = lista.root;
+        lista.insertar(4);
+        lista.insertar(2);
+        lista.insertar(1);
+
+
+        // System.out.println(lista.eliminar(4));
+        // lista.rellenar();
+        //Node nodeAux = lista.root;
+
+        ListaEnlazadas enlazadas2 = lista.invertir();
+        Node nodeAux = enlazadas2.root;
         System.out.println("///////////////////////////////////");
-         while (nodeAux != null) {
+        while (nodeAux != null) {
             System.out.println(nodeAux.dato);
-            nodeAux=nodeAux.next;
+            nodeAux = nodeAux.next;
         }
     }
 }
