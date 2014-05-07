@@ -17,7 +17,7 @@ public class ListaEnlazadas {
         Node prev;
     }
     Node root = null;
-    Node f=null;
+    Node f = null;
 
     public void insertar(int e) {
         Node node = new Node();
@@ -27,33 +27,47 @@ public class ListaEnlazadas {
         if (root != null) {
             root.prev = node;
         }
-        if(root==null) f=node;
-
+        if (root == null) {
+            f = node;
+        }
         root = node;
     }
+//rellenar una lista los valores que faltan
 
-    public int remove(int numero) {
+    public void rellenar() {
+        Node aux = root;
+        while (aux != null) {
+            if (aux.next != null) {
+                if ((aux.dato + 1) < aux.next.dato) {
+                    Node temp = new Node();
+                    temp.dato = aux.dato + 1;
+                    temp.next = aux.next;
+                    aux.next = temp;
+                }
+            }
+            aux = aux.next;
+        }
+
+    }
+
+    public int eliminar(int elemento) {
         Node aux = root;
         int count = 0;
         while (aux != null) {
-            if (numero == aux.dato) {
-                if (aux.next == null) {
-                    aux = null;
-                    count++;
-                    break;
+            if (elemento == aux.dato) {
+                if (aux == root) {
+                    root = root.next;
                 } else {
-                    if (aux.prev == null) {
-                        root = root.next;
-                    } else {
-                        aux.next.prev = aux;
-                        aux.prev.next = aux.next;
-                    }
+                    aux.prev.next = aux.next;
+                    if(aux.next!=null)
+                    aux.next.prev = aux;
                 }
                 count++;
             }
             aux = aux.next;
         }
-
         return count;
     }
+
+   
 }
